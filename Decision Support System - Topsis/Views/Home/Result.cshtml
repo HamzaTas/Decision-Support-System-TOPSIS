@@ -1,0 +1,489 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    // Karar Matrisi & Seçenekler
+    double[,] kararMatris = (double[,])TempData["KararMatrisi"];
+    List<string> secenekler = (List<string>)TempData["Secenekler"];
+
+    //Standart Karar Matrisi
+    double[,] StandartKararMatris = (double[,])TempData["StandartKararMatrisi"];
+
+    //Ağırlıklı Standart Karar Matrisi
+    double[,] agirlikliStandartKararMatrisi = (double[,])TempData["agirlikliStandartKararMatrisi"];
+    double[] IdealcozumDegerler = (double[])TempData["IdealcozumDegerler"];
+    double[] negatifİdealcozumDegerleri = (double[])TempData["negatifİdealcozumDegerleri"];
+    double[] idealUzaklik = (double[])TempData["idealUzaklik"];
+    double[] negatifİdealUzaklik = (double[])TempData["negatifİdealUzaklik"];
+
+    double[] idealCozumSirali = (double[])TempData["idealCozumSirali"];
+    double idealCozum = (double)TempData["idealCozum"];
+
+    double S1 = (double)TempData["Ss1"];
+    double S2 = (double)TempData["Ss2"];
+    double S3 = (double)TempData["Ss3"];
+    double S4 = (double)TempData["Ss4"];
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title>Decision Support System</title>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <br />
+        <h2>Karar Destek Sistemi</h2>
+        <p>Bu sistem yeni bir Nükleer Santral kurulumu için bir ülkedeki 4 alternatif şehir arasında en iyi seçimi yapar.</p><br />
+        <h3>Analiz Sonuçları : </h3>
+        <br />
+        <h4>1.Adım : Karar Matrisi</h4>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Seçenek</th>
+                    <th>K1</th>
+                    <th>K2</th>
+                    <th>K3</th>
+                    <th>K4</th>
+                    <th>K5</th>
+                    <th>K6</th>
+                    <th>K7</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int sira = 0;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            @if (sira == 0)
+                            {
+                                <td>@secenekler[0]</td>
+                            }
+                            @if (sira == 1)
+                            {
+                                <td>@secenekler[1]</td>
+                            }
+                            @if (sira == 2)
+                            {
+                                <td>@secenekler[2]</td>
+                            }
+                            @if (sira == 3)
+                            {
+                                <td>@secenekler[3]</td>
+                            }
+
+                            @for (int j = 0; j < 7; j++)
+                            {
+                                <td>@kararMatris[i, j].ToString()</td>
+                            }
+                            @{
+                                sira++;
+                            }
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <br />
+
+        <h4>2.Adım : Standart Karar Matrisi</h4>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Seçenek</th>
+                    <th>K1</th>
+                    <th>K2</th>
+                    <th>K3</th>
+                    <th>K4</th>
+                    <th>K5</th>
+                    <th>K6</th>
+                    <th>K7</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int sira1 = 0;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            @if (sira1 == 0)
+                            {
+                                <td>@secenekler[0]</td>
+                            }
+                            @if (sira1 == 1)
+                            {
+                                <td>@secenekler[1]</td>
+                            }
+                            @if (sira1 == 2)
+                            {
+                                <td>@secenekler[2]</td>
+                            }
+                            @if (sira1 == 3)
+                            {
+                                <td>@secenekler[3]</td>
+                            }
+
+                            @for (int j = 0; j < 7; j++)
+                            {
+                                <td>@StandartKararMatris[i, j].ToString().Substring(0, 6)</td>
+                            }
+                            @{
+                                sira1++;
+                            }
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <br />
+        <h4>3.Adım :Ağırlıklı Standart Karar Matrisi</h4>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Seçenek</th>
+                    <th>K1</th>
+                    <th>K2</th>
+                    <th>K3</th>
+                    <th>K4</th>
+                    <th>K5</th>
+                    <th>K6</th>
+                    <th>K7</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int sira2 = 0;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            @if (sira2 == 0)
+                            {
+                                <td>@secenekler[0]</td>
+                            }
+                            @if (sira2 == 1)
+                            {
+                                <td>@secenekler[1]</td>
+                            }
+                            @if (sira2 == 2)
+                            {
+                                <td>@secenekler[2]</td>
+                            }
+                            @if (sira2 == 3)
+                            {
+                                <td>@secenekler[3]</td>
+                            }
+
+                            @for (int j = 0; j < 7; j++)
+                            {
+                                <td>@agirlikliStandartKararMatrisi[i, j].ToString().Substring(0, 6)</td>
+                            }
+                            @{
+                                sira2++;
+                            }
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        <br />
+
+        <h4>4.Adım : İdeal (A+) ve Negatif İdeal Çözüm Setleri</h4>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <h5 style="margin-left:25%;">İdeal Çözüm Seti</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>A+</th>
+                            <th>K1</th>
+                            <th>K2</th>
+                            <th>K3</th>
+                            <th>K4</th>
+                            <th>K5</th>
+                            <th>K6</th>
+                            <th>K7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            <tr>
+                                <td>A+</td>
+
+                                @for (int j = 0; j < 7; j++)
+                                {
+                                    <td>@IdealcozumDegerler[j].ToString().Substring(0, 6)</td>
+                                }
+                                @{
+                                    sira1++;
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h5 style="margin-left:25%;">Negatif İdeal Çözüm Seti</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>A-</th>
+                            <th>K1</th>
+                            <th>K2</th>
+                            <th>K3</th>
+                            <th>K4</th>
+                            <th>K5</th>
+                            <th>K6</th>
+                            <th>K7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            <tr>
+                                <td>A-</td>
+
+                                @for (int j = 0; j < 7; j++)
+                                {
+                                    <td>@negatifİdealcozumDegerleri[j].ToString().Substring(0, 6)</td>
+                                }
+                                @{
+                                    sira1++;
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <h4>5.Adım : İdeal ve Negatif İdeal Noktalara Olan Uzaklık - İdeal Ayrım</h4>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <h5 style="margin-left:25%;">İdeal Uzaklık Seti</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@secenekler[0]</th>
+                            <th>@secenekler[1]</th>
+                            <th>@secenekler[2]</th>
+                            <th>@secenekler[3]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            <tr>
+                                @for (int j = 0; j < 4; j++)
+                                {
+                                    <td>@idealUzaklik[j].ToString().Substring(0, 6)</td>
+                                }
+                                @{
+                                    sira1++;
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h5 style="margin-left:25%;">Negatif İdeal Uzaklık Seti</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@secenekler[0]</th>
+                            <th>@secenekler[1]</th>
+                            <th>@secenekler[2]</th>
+                            <th>@secenekler[3]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            <tr>
+                                @for (int j = 0; j < 4; j++)
+                                {
+                                    <td>@negatifİdealUzaklik[j].ToString().Substring(0, 6)</td>
+                                }
+                                @{
+                                    sira1++;
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <h4>6.Adım : İdeal Çözüme Gerekli Yakınlık Değerleri - Sıralı (K->B)</h4>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    @for (int j = 0; j < 4; j++)
+                    {
+                        if (idealCozumSirali[j] == S1)
+                        {
+                            <th>@secenekler[0]</th>
+                        }
+                        if (idealCozumSirali[j] == S2)
+                        {
+                            <th>@secenekler[1]</th>
+                        }
+                        if (idealCozumSirali[j] == S3)
+                        {
+                            <th>@secenekler[2]</th>
+                        }
+                        if (idealCozumSirali[j] == S4)
+                        {
+                            <th>@secenekler[3]</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    @for (int j = 0; j < 4; j++)
+                    {
+                        <td>@idealCozumSirali[j].ToString().Substring(0, 6)</td>
+                    }
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+        <h4>7.Adım : En İdeal Çözümün Belirtilmesi - İdeal Çözüme Gerekli Yakınlık Değerlerinin En Büyüğü </h4>
+        <br />
+        <h3 style="color:red; text-align:center;align-items:center;">
+            Nükleer santral kurulumu için en ideal çözüm @idealCozum.ToString().Substring(0, 6) değeri ile
+
+            @for (int j = 0; j < 4; j++)
+            {
+                if (idealCozum == S1)
+                {
+                    <span style="text-align:justify;color:black;"> @secenekler[0].ToString()</span>
+                    break;
+                }
+                if (idealCozum == S2)
+                {
+                    <span style="text-align:justify;;color:black;"> @secenekler[1].ToString()</span>
+                    break;
+                }
+                if (idealCozum == S3)
+                {
+                    <span style="text-align:justify;;color:black;"> @secenekler[2].ToString()</span>
+                    break;
+                }
+                if (idealCozum == S3)
+                {
+                    <span style="text-align:justify;;color:black;"> @secenekler[3].ToString()</span>
+                    break;
+                }
+            }
+            şehri olarak belirlenmiştir.
+
+        </h3>
+        <br />
+        <br />
+
+        <h6 style="text-align:center;align-items:center;">Düzce Üniversitesi - Mühendislik Fakültesi - Bilgisayar Mühendisliği Bölümü - Karar Destek Sistemleri - Hamza TAŞ / 151001020 </h6>
+        <br />        <br />
+        <a style="margin-left: 40%;" href="/Home/Index" class="btn btn-primary">Anasayfa'ya Dön</a>
+        <a href="#" class="btn btn-success" onclick="window.print();">Sonuçları Yazdır</a>
+        <br />
+        <br />
+
+    </div>
+
+
+    <div class="modal fade" id="overlay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Veriler üzerinde analiz yapılıyor...</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Bu işlem 3 ile 5 saniye arasında sürebilir.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="overlay2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Analiz Tamamlandı.</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Sonuçlar gösteriliyor.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#overlay').modal('show');
+
+        setTimeout(function () {
+            $('#overlay').modal('hide');
+
+            $('#overlay2').modal('show');
+            setTimeout(function () {
+                $('#overlay2').modal('hide');
+            }, 2000);
+        }, 4000);
+    </script>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>

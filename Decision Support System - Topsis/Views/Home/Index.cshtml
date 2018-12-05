@@ -1,0 +1,213 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title>Decision Support System</title>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <br />
+        <h2>Karar Destek Sistemi</h2>
+        <p>Bu sistem yeni bir Nükleer Santral kurulumu için bir ülkedeki 4 alternatif şehir arasında en iyi seçimi yapar.</p><br />
+        <h4>Değerlendirme Faktörleri (Ağırlıklar)</h4>
+        <div class="form">
+            <form method="post" action="/Home/Index">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">K1 - Şehir Merkezine Uzaklık (+):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Şehir Merkezine Uzaklık Giriniz" name="K1" value="0,2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">K2 - Şehir Nüfusu (-):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Şehir Nüfusu Giriniz" name="K2" value="0,2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">K3 - Toprağın verimliliği (-):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Toprağın verimliliğini Giriniz" name="K3" value="0,2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">K4 - Soğutma Gereksinimleri (+):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Soğutma Gereksinimleri Giriniz" name="K4" value="0,2">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">K5 - Taşıma Koşulları (+):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Taşıma Koşulları Giriniz" name="K5" value="0,2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">K6 - Deprem Riski (-):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Deprem Riski Giriniz" name="K6" value="0,2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">K7 - Meteorolojik Koşullar (+):</label>
+                            <input type="text" class="form-control" id="email" placeholder="Meteorolojik Koşullar Giriniz" name="K7" value="0,2">
+                        </div>
+                        <br />
+               
+                        <button style="float:right;" type="submit" class="btn btn-primary btn-lg btn-block">Analizi Başlat</button>
+                    </div>
+                </div>
+                <br />
+                <h4>Karar Matrisi</h4>
+                <br />
+
+
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Seçenek</th>
+                            <th>K1</th>
+                            <th>K2</th>
+                            <th>K3</th>
+                            <th>K4</th>
+                            <th>K5</th>
+                            <th>K6</th>
+                            <th>K7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <input type="text" class="form-control" id="email" name="Sec1" value="Düzce">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S1_K1" value="25">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S1_K2" value="20">
+                            </td>
+                            <td>
+
+                                <input type="number" class="form-control" id="email" name="S1_K3" value="15">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S1_K4" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S1_K5" value="25">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S1_K6" value="20">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S1_K7" value="15">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" id="email" name="Sec2" value="Mersin">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S2_K1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S2_K2" value="30">
+                            </td>
+                            <td>
+
+                                <input type="number" class="form-control" id="email" name="S2_K3" value="20">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S2_K4" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S2_K5" value="10">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S2_K6" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S2_K7" value="20">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" id="email" name="Sec3" value="Ağrı">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S3_K1" value="30">
+                            </td>
+                            <td>
+
+                                <input type="number" class="form-control" id="email" name="S3_K2" value="10">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S3_K3" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S3_K4" value="10">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S3_K5" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S3_K6" value="10">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S3_K7" value="30">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" id="email" name="Sec4" value="Bursa">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S4_K1" value="25">
+                            </td>
+                            <td>
+
+                                <input type="number" class="form-control" id="email" name="S4_K2" value="20">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S4_K3" value="15">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S4_K4" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S4_K5" value="10">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S4_K6" value="30">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="email" name="S4_K7" value="20">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br />
+                <br />
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
