@@ -88,6 +88,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\StandartKararMatrisi.png" />
+    <Content Include="Content\Style\main.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>

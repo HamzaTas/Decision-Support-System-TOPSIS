@@ -45,6 +45,19 @@ namespace Decision_Support_System___Topsis.Controllers
                 Convert.ToDouble(a.K6),
                 Convert.ToDouble(a.K7) };
 
+            double top = 0;
+
+            for (int i = 0; i < Agirliklar.Length; i++)
+            {
+                top = top + Agirliklar[i];
+            }
+
+            if (top > 1)
+            {
+                TempData["hata"] = "Agirlik değerlerinin toplamı 0 ile 1 arasında olmalıdır.";
+                return RedirectToAction("Index");
+            }
+
             Topsis topsis = new Topsis();
 
             // Karar Matrisi

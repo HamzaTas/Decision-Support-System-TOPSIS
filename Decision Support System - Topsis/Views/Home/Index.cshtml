@@ -27,6 +27,16 @@
         <br />
         <h2>Karar Destek Sistemi</h2>
         <p>Bu sistem yeni bir Nükleer Santral kurulumu için bir ülkedeki 4 alternatif şehir arasında en iyi seçimi yapar.</p><br />
+
+        @if (TempData["hata"] != null)
+        {
+            <div class="alert alert-danger">
+                <p>
+                    Agirlik değerlerinin toplamı 0 ile 1 arasında olmalıdır.
+                </p>
+
+            </div>
+        }
         <h4>Değerlendirme Faktörleri (Ağırlıklar)</h4>
         <div class="form">
             <form method="post" action="/Home/Index">
@@ -34,33 +44,33 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="email">K1 - Şehir Merkezine Uzaklık (+):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Şehir Merkezine Uzaklık Giriniz" name="K1" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Şehir Merkezine Uzaklık Giriniz" name="K1" value="0,1" required>
                         </div>
                         <div class="form-group">
                             <label for="email">K2 - Şehir Nüfusu (-):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Şehir Nüfusu Giriniz" name="K2" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Şehir Nüfusu Giriniz" name="K2" value="0,2" required>
                         </div>
                         <div class="form-group">
                             <label for="email">K3 - Toprağın verimliliği (-):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Toprağın verimliliğini Giriniz" name="K3" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Toprağın verimliliğini Giriniz" name="K3" value="0,2" required>
                         </div>
                         <div class="form-group">
                             <label for="email">K4 - Soğutma Gereksinimleri (+):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Soğutma Gereksinimleri Giriniz" name="K4" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Soğutma Gereksinimleri Giriniz" name="K4" value="0,1" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="email">K5 - Taşıma Koşulları (+):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Taşıma Koşulları Giriniz" name="K5" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Taşıma Koşulları Giriniz" name="K5" value="0,1" required>
                         </div>
                         <div class="form-group">
                             <label for="email">K6 - Deprem Riski (-):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Deprem Riski Giriniz" name="K6" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Deprem Riski Giriniz" name="K6" value="0,1" required>
                         </div>
                         <div class="form-group">
                             <label for="email">K7 - Meteorolojik Koşullar (+):</label>
-                            <input type="text" class="form-control" id="email" placeholder="Meteorolojik Koşullar Giriniz" name="K7" value="0,2">
+                            <input type="text" class="form-control" id="email" placeholder="Meteorolojik Koşullar Giriniz" name="K7" value="0,2" required>
                         </div>
                         <br />
                
@@ -92,111 +102,111 @@
                         <tr>
 
                             <td>
-                                <input type="text" class="form-control" id="email" name="Sec1" value="Düzce">
+                                <input type="text" class="form-control" id="email" name="Sec1" value="Düzce" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S1_K1" value="25">
+                                <input type="number" class="form-control" id="email" name="S1_K1" value="25" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S1_K2" value="20">
+                                <input type="number" class="form-control" id="email" name="S1_K2" value="20" required>
                             </td>
                             <td>
 
-                                <input type="number" class="form-control" id="email" name="S1_K3" value="15">
+                                <input type="number" class="form-control" id="email" name="S1_K3" value="15" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S1_K4" value="30">
+                                <input type="number" class="form-control" id="email" name="S1_K4" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S1_K5" value="25">
+                                <input type="number" class="form-control" id="email" name="S1_K5" value="25" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S1_K6" value="20">
+                                <input type="number" class="form-control" id="email" name="S1_K6" value="20" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S1_K7" value="15">
+                                <input type="number" class="form-control" id="email" name="S1_K7" value="15" required>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="email" name="Sec2" value="Mersin">
+                                <input type="text" class="form-control" id="email" name="Sec2" value="Mersin" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S2_K1" value="10">
+                                <input type="number" class="form-control" id="email" name="S2_K1" value="10" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S2_K2" value="30">
+                                <input type="number" class="form-control" id="email" name="S2_K2" value="30" required>
                             </td>
                             <td>
 
-                                <input type="number" class="form-control" id="email" name="S2_K3" value="20">
+                                <input type="number" class="form-control" id="email" name="S2_K3" value="20" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S2_K4" value="30">
+                                <input type="number" class="form-control" id="email" name="S2_K4" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S2_K5" value="10">
+                                <input type="number" class="form-control" id="email" name="S2_K5" value="10" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S2_K6" value="30">
+                                <input type="number" class="form-control" id="email" name="S2_K6" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S2_K7" value="20">
+                                <input type="number" class="form-control" id="email" name="S2_K7" value="20" required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="email" name="Sec3" value="Ağrı">
+                                <input type="text" class="form-control" id="email" name="Sec3" value="Ağrı" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S3_K1" value="30">
+                                <input type="number" class="form-control" id="email" name="S3_K1" value="30" required>
                             </td>
                             <td>
 
-                                <input type="number" class="form-control" id="email" name="S3_K2" value="10">
+                                <input type="number" class="form-control" id="email" name="S3_K2" value="10" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S3_K3" value="30">
+                                <input type="number" class="form-control" id="email" name="S3_K3" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S3_K4" value="10">
+                                <input type="number" class="form-control" id="email" name="S3_K4" value="10" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S3_K5" value="30">
+                                <input type="number" class="form-control" id="email" name="S3_K5" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S3_K6" value="10">
+                                <input type="number" class="form-control" id="email" name="S3_K6" value="10" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S3_K7" value="30">
+                                <input type="number" class="form-control" id="email" name="S3_K7" value="30" required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="email" name="Sec4" value="Bursa">
+                                <input type="text" class="form-control" id="email" name="Sec4" value="Bursa" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S4_K1" value="25">
+                                <input type="number" class="form-control" id="email" name="S4_K1" value="25" required>
                             </td>
                             <td>
 
-                                <input type="number" class="form-control" id="email" name="S4_K2" value="20">
+                                <input type="number" class="form-control" id="email" name="S4_K2" value="20" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S4_K3" value="15">
+                                <input type="number" class="form-control" id="email" name="S4_K3" value="15" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S4_K4" value="30">
+                                <input type="number" class="form-control" id="email" name="S4_K4" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S4_K5" value="10">
+                                <input type="number" class="form-control" id="email" name="S4_K5" value="10" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S4_K6" value="30">
+                                <input type="number" class="form-control" id="email" name="S4_K6" value="30" required>
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="email" name="S4_K7" value="20">
+                                <input type="number" class="form-control" id="email" name="S4_K7" value="20" required>
                             </td>
                         </tr>
 

@@ -44,13 +44,12 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <title>Decision Support System</title>
+    <link href="~/Content/Style/main.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="container">
         <br />
-        <br />
-        <h2>Karar Destek Sistemi</h2>
-        <p>Bu sistem yeni bir Nükleer Santral kurulumu için bir ülkedeki 4 alternatif şehir arasında en iyi seçimi yapar.</p><br />
         <h3>Analiz Sonuçları : </h3>
         <br />
         <h4>1.Adım : Karar Matrisi</h4>
@@ -108,6 +107,7 @@
         <br />
 
         <h4>2.Adım : Standart Karar Matrisi</h4>
+        <img class="myImg" src="~/Content/img/StandartKararMatrisi.png" alt="Standart Karar Matrisi" style="width:100%;max-width:100px">
         <br />
         <table class="table">
             <thead>
@@ -162,6 +162,7 @@
 
         <br />
         <h4>3.Adım :Ağırlıklı Standart Karar Matrisi</h4>
+        <img class="myImg" src="~/Content/img/AgirlikliStandartKararMatrisi.png" alt="Ağırlıklı Standart Karar Matrisi" style="width:100%;max-width:100px">
         <br />
         <table class="table">
             <thead>
@@ -221,7 +222,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h5 style="margin-left:25%;">İdeal Çözüm Seti</h5>
-                <table class="table">
+               <table class="table">
                     <thead>
                         <tr>
                             <th>A+</th>
@@ -254,7 +255,7 @@
             </div>
             <div class="col-md-6">
                 <h5 style="margin-left:25%;">Negatif İdeal Çözüm Seti</h5>
-                <table class="table">
+             <table class="table">
                     <thead>
                         <tr>
                             <th>A-</th>
@@ -295,6 +296,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h5 style="margin-left:25%;">İdeal Uzaklık Seti</h5>
+                <img class="myImg" src="~/Content/img/pozitif.png" alt="Pozitif İdeal Çözüm Seti" style="width:100%;max-width:125px;">
                 <table class="table">
                     <thead>
                         <tr>
@@ -322,6 +324,9 @@
             </div>
             <div class="col-md-6">
                 <h5 style="margin-left:25%;">Negatif İdeal Uzaklık Seti</h5>
+                <img class="myImg" src="~/Content/img/negatif.png" alt="Negatif İdeal Çözüm Seti" style="width:100%;max-width:100px">
+
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -352,7 +357,7 @@
         <br />
         <br />
         <h4>6.Adım : İdeal Çözüme Gerekli Yakınlık Değerleri - Sıralı (K->B)</h4>
-        <br />
+        <img class="myImg" src="~/Content/img/ideal.png" alt="İdeal Çözüm Seti" style="width:100%;max-width:100px;">
         <table class="table">
             <thead>
                 <tr>
@@ -436,6 +441,13 @@
     </div>
 
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
     <div class="modal fade" id="overlay">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -463,6 +475,22 @@
     </div>
 
     <script>
+
+        var modal = document.getElementById('myModal');
+        $('.myImg').click(function () {
+            var img = document.getElementsByClassName('myImg');
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        });
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+
+
         $('#overlay').modal('show');
 
         setTimeout(function () {
@@ -474,13 +502,6 @@
             }, 2000);
         }, 4000);
     </script>
-
-
-
-
-
-
-
 
 </body>
 
